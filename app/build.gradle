@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
-
 android {
     compileSdk 32
 
@@ -47,15 +48,61 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    //noinspection GradleDependency
     implementation "androidx.compose.ui:ui:$compose_version"
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    //noinspection GradleDependency
     implementation "androidx.compose.material:material:$compose_version"
+    //noinspection GradleDependency
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation 'androidx.activity:activity-compose:1.4.0'
+    implementation 'androidx.navigation:navigation-runtime-ktx:2.4.2'
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //noinspection GradleDependency
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    //noinspection GradleDependency
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // Integration with activities
+    implementation "androidx.activity:activity-compose:1.4.0"
+    // Compose Material Design
+    //noinspection GradleDependency
+    implementation "androidx.compose.material:material:$compose_version"
+    // Tooling support (Previews, etc.)
+    //noinspection GradleDependency
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    // Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01'
+    // Navigation
+    implementation "androidx.navigation:navigation-compose:2.5.0-rc01"
+
+
+    // Hilt DI
+    def hilt_lifecycle_viewmodel = "1.0.0-alpha03"
+    def hilt_navigation = "1.0.0-alpha03"
+
+
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewmodel"
+    //noinspection GradleDependency
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation"
+
+    // Coroutines
+
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.5"
+
+    // Coil Image Loader
+    implementation "io.coil-kt:coil-compose:2.0.0"
+
+    // Accompaniest Swipe Refresh
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.18.0"
+
+    // Firebase Bom
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }
