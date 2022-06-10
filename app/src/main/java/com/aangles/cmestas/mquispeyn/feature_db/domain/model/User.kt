@@ -10,6 +10,6 @@ data class User(
     @ColumnInfo(name = "first_name") val name: String,
     @ColumnInfo(name = "last_name") val lastName: String,
     @ColumnInfo(name = "phone") val phone: String,
-    @ColumnInfo(name = "age") val gender: Boolean
+    @ColumnInfo(name = "age") val age: String
 
 )

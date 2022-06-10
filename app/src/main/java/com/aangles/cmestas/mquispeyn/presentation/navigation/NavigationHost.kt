@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.aangles.cmestas.mquispeyn.presentation.screens.users.FirstScreen
 import com.aangles.cmestas.mquispeyn.presentation.screens.parking.SecondScreen
+import com.aangles.cmestas.mquispeyn.presentation.screens.users.edit.EditUserScreen
 
 @ExperimentalMaterialApi
 @Composable
@@ -32,12 +33,23 @@ fun NavigationHost(navController: NavHostController) {
                 }
             )
         ) {
-
-
             SecondScreen(
                 navController,
 
             )
+        }
+        composable(
+            route = Destinations.EditUserScreen.route,
+            arguments = listOf(
+                navArgument(
+                    name = "userId"
+                ) {
+                    type = NavType.IntType
+                    defaultValue = -1
+                }
+            )
+        ) {
+            EditUserScreen(navController = navController)
         }
 
     }

@@ -10,7 +10,9 @@ import androidx.navigation.compose.rememberNavController
 import com.aangles.cmestas.mquispeyn.presentation.components.BottomNavigationBar
 import com.aangles.cmestas.mquispeyn.presentation.navigation.Destinations
 import com.aangles.cmestas.mquispeyn.presentation.navigation.NavigationHost
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +23,7 @@ class MainActivity : ComponentActivity() {
 }
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
+
 fun MainScreen() {
     val navController = rememberNavController()
 
