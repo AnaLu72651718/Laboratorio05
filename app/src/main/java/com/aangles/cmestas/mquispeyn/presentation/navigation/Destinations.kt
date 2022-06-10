@@ -14,14 +14,14 @@ sealed class Destinations(
     ){
     object FirstScreen: Destinations("first_screen", "Pantall 1", Icons.Filled.Home)
     object SecondScreen: Destinations("second_screen", "Pantalla 2", Icons.Filled.CarRental)
-    object EditUserScreen: Destinations("edit_user_screen?userId={userId}", "Editar usuario", Icons.Filled.Edit){
+    object EditUserScreen: Destinations("edit?userId={userId}", "Editar usuario", Icons.Filled.Edit){
         fun passId(userId: Int?): String {
             return "edit?userId=$userId"
         }
     }
-    object EditCarParkScreen: Destinations("edit_carpark_screen?carParkId={carParkId}", "Editar parqueo", Icons.Filled.Edit){
+    object EditCarParkScreen: Destinations("edit2?carParkId={carParkId}", "Editar parqueo", Icons.Filled.Edit){
         fun passId(carParkId: Int?): String {
-            return "edit?carParkId=$carParkId"
+            return "edit2?carParkId=$carParkId"
         }
     }
 

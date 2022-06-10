@@ -52,7 +52,7 @@ fun MainScreen() {
                 modifier = Modifier
                     .size(75.dp)
                     .offset {
-                        IntOffset(x = 0, y = -100)
+                        IntOffset(x = 0, y = -100000)
                     }
             ) {
 

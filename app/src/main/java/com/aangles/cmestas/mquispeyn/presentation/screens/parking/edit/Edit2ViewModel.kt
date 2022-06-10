@@ -47,13 +47,13 @@ class Edit2ViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<Ui2Event>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private var currentCarParkId: Int? = null
+    var currentCarParkId: Int? = null
 
     init {
-        savedStateHandle.get<Int>("carParkId")?.let { carParkID ->
-            if (carParkID != -1) {
+        savedStateHandle.get<Int>("carParkId")?.let { carParkId ->
+            if (carParkId != -1) {
                 viewModelScope.launch {
-                    getCarPark(carParkID)?.also { carPark ->
+                    getCarPark(carParkId)?.also { carPark ->
                         currentCarParkId = carPark.id
                         _carParkName.value = carParkName.value.copy(
                             text = carPark.name
@@ -122,7 +122,8 @@ class Edit2ViewModel @Inject constructor(
                             lat = carParkLat.value.text,
                             lon = carParkLon.value.text,
                             dateC = carParkDateC.value.text,
-                            dateO = carParkDateO.value.text
+                            dateO = carParkDateO.value.text,
+                            id = currentCarParkId
                         )
                     )
                     _eventFlow.emit(Ui2Event.SaveCarPark)

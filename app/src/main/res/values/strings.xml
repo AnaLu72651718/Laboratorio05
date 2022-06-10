@@ -13,4 +13,6 @@
     <string name="longitude">Longitud</string>
     <string name="hourC">Hora cierre</string>
     <string name="hourB">Hora inicio</string>
+    <string name="modifier_user">Modificar usuario</string>
+    <string name="modifier_carPark">Modificar parqueo</string>
 </resources>

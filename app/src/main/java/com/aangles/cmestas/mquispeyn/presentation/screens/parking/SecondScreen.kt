@@ -53,7 +53,7 @@ fun SecondScreen( navController: NavController,
                 onDeleteCarPark = { viewModel.onEvent(CarParkEvent.DeleteCarPark(it)) },
                 onEditCarPark = {
                     navController.navigate(
-                        route = Destinations.EditUserScreen.passId(it)
+                        route = Destinations.EditCarParkScreen.passId(it)
                     )
                 },
                 carParks = state.carParks

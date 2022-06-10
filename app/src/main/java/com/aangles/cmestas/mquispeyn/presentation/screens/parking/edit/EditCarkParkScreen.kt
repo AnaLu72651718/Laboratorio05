@@ -26,7 +26,9 @@ fun EditCarParkScreen(
     val latState = viewModel.carParkLat.value
     val lonState = viewModel.carParkLon.value
     val dateCState = viewModel.carParkDateC.value
-    val dateOState = viewModel.carParkDateC.value
+    val dateOState = viewModel.carParkDateO.value
+
+    val id = viewModel.currentCarParkId
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
@@ -40,9 +42,15 @@ fun EditCarParkScreen(
 
     Scaffold(
         topBar = {
-            EditTopBar(
-                topAppBarText = stringResource(id = R.string.add_carPark)
-            )
+            if(id!=null) {
+                EditTopBar(
+                    topAppBarText = stringResource(id = R.string.modifier_carPark)
+                )
+            }
+            else
+                EditTopBar(
+                    topAppBarText = stringResource(id = R.string.add_carPark)
+                )
         },
         content = {
             EditContent(
@@ -56,9 +64,19 @@ fun EditCarParkScreen(
             )
         },
         bottomBar = {
-            EditBottomBar(
-                onInsertCarPark = { viewModel.onEvent(Edit2Event.InsertCarPark) }
-            )
+            if (id != null) {
+                EditBottomBar(
+                    id,
+                    onInsertCarPark = { viewModel.onEvent(Edit2Event.InsertCarPark) }
+                )
+            }
+            else{
+                EditBottomBar(
+                    -1,
+                    onInsertCarPark = { viewModel.onEvent(Edit2Event.InsertCarPark) }
+                )
+            }
+
         }
     )
 }
@@ -126,6 +144,7 @@ fun EditContent(
 
 @Composable
 fun EditBottomBar(
+    text: Int,
     modifier: Modifier = Modifier,
     onInsertCarPark: () -> Unit
 ) {
@@ -135,6 +154,9 @@ fun EditBottomBar(
             .padding(10.dp, 10.dp, 10.dp, 75.dp),
         onClick = { onInsertCarPark() }
     ) {
-        Text(text = stringResource(id = R.string.add_carPark))
+        if(text == -1)
+            Text(text = stringResource(id = R.string.add_carPark))
+        else
+            Text(text = stringResource(id = R.string.modifier_carPark))
     }
 }
