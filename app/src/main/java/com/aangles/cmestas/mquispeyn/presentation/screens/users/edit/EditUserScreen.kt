@@ -27,6 +27,8 @@ fun EditUserScreen(
     val phoneState = viewModel.userPhone.value
     val ageState = viewModel.userAge.value
 
+    val id = viewModel.currentUserId
+
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
@@ -36,12 +38,19 @@ fun EditUserScreen(
             }
         }
     }
-    
+
     Scaffold(
         topBar = {
-            EditTopBar(
-                topAppBarText = stringResource(id = R.string.add_user)
-            )
+            if(id!=null){
+                EditTopBar(
+                    topAppBarText = stringResource(id = R.string.modifier_user)
+                )
+            }
+            else{
+                EditTopBar(
+                    topAppBarText = stringResource(id = R.string.add_user)
+                )
+            }
         },
         content = {
             EditContent(
@@ -53,9 +62,17 @@ fun EditUserScreen(
             )
         },
         bottomBar = {
-            EditBottomBar(
-                onInsertUser = { viewModel.onEvent(EditEvent.InsertUser) }
-            )
+            if (id != null) {
+                EditBottomBar(
+                    id,
+                    onInsertUser = { viewModel.onEvent(EditEvent.InsertUser) }
+                )
+            }else{
+                EditBottomBar(
+                    -1,
+                    onInsertUser = { viewModel.onEvent(EditEvent.InsertUser) }
+                )
+            }
         }
     )
 }
@@ -111,6 +128,7 @@ fun EditContent(
 
 @Composable
 fun EditBottomBar(
+    text: Int,
     modifier: Modifier = Modifier,
     onInsertUser: () -> Unit
 ) {
@@ -120,7 +138,10 @@ fun EditBottomBar(
             .padding(10.dp, 10.dp, 10.dp, 100.dp),
         onClick = { onInsertUser() }
     ) {
-        Text(text = stringResource(id = R.string.add_user))
+        if(text == -1)
+            Text(text = stringResource(id = R.string.add_user))
+        else
+            Text(text = stringResource(id = R.string.modifier_user))
     }
 }
 
@@ -148,10 +169,3 @@ fun PreviewAddEditUserContent() {
     }
 }
 
-@Preview
-@Composable
-fun PreviewAddEditBottomBar() {
-    Laboratorio05Theme() {
-        EditBottomBar {}
-    }
-}

@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.aangles.cmestas.mquispeyn.presentation.screens.users.FirstScreen
 import com.aangles.cmestas.mquispeyn.presentation.screens.parking.SecondScreen
+import com.aangles.cmestas.mquispeyn.presentation.screens.parking.edit.EditCarParkScreen
 import com.aangles.cmestas.mquispeyn.presentation.screens.users.edit.EditUserScreen
 
 @ExperimentalMaterialApi
@@ -25,6 +26,7 @@ fun NavigationHost(navController: NavHostController) {
 
             SecondScreen(navController)
         }
+        /*
         composable(
             route = Destinations.SecondScreen.route + "/{text}" + "/{id}",
             arguments = listOf(
@@ -35,9 +37,9 @@ fun NavigationHost(navController: NavHostController) {
         ) {
             SecondScreen(
                 navController,
-
             )
         }
+        */
         composable(
             route = Destinations.EditUserScreen.route,
             arguments = listOf(
@@ -51,7 +53,19 @@ fun NavigationHost(navController: NavHostController) {
         ) {
             EditUserScreen(navController = navController)
         }
-
+        composable(
+            route = Destinations.EditCarParkScreen.route,
+            arguments = listOf(
+                navArgument(
+                    name = "carParkId"
+                ) {
+                    type = NavType.IntType
+                    defaultValue = -1
+                }
+            )
+        ) {
+            EditCarParkScreen(navController = navController)
+        }
     }
 
 

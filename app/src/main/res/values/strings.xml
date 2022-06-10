@@ -6,4 +6,13 @@
     <string name="last_name">Apellido:</string>
     <string name="age">Edad:</string>
     <string name="phone">Celular:</string>
+    <string name="add_carPark">Agregar parqueo</string>
+    <string name="carParks">Parqueos</string>
+    <string name="address">Dirección</string>
+    <string name="latitude">Latitud</string>
+    <string name="longitude">Longitud</string>
+    <string name="hourC">Hora cierre</string>
+    <string name="hourB">Hora inicio</string>
+    <string name="modifier_user">Modificar usuario</string>
+    <string name="modifier_carPark">Modificar parqueo</string>
 </resources>

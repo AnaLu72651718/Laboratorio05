@@ -36,7 +36,7 @@ class EditViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private var currentUserId: Int? = null
+    var currentUserId: Int? = null
 
     init {
         savedStateHandle.get<Int>("userId")?.let { userId ->
