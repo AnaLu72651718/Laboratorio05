@@ -1,4 +1,4 @@
-package com.aangles.cmestas.mquispeyn.navigation
+package com.aangles.cmestas.mquispeyn.presentation.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

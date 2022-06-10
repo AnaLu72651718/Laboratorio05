@@ -1,6 +1,12 @@
 package com.aangles.cmestas.mquispeyn.di
 
-import com.google.firebase.firestore.FirebaseFirestore
+
+import android.app.Application
+import androidx.room.Room
+import com.aangles.cmestas.mquispeyn.feature_db.data.repository.UserRepositoryImpl
+import com.aangles.cmestas.mquispeyn.feature_db.data.local.UserDatabase
+import com.aangles.cmestas.mquispeyn.feature_db.domain.repository.UserRepository
+import com.aangles.cmestas.mquispeyn.utils.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,10 +15,19 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+object AppModule {
 
     @Provides
     @Singleton
-    fun provideFireStoreInstance() = FirebaseFirestore.getInstance()
+    fun provideUserDatabase(app: Application) = Room.databaseBuilder(
+        app,
+        UserDatabase::class.java,
+        DATABASE_NAME
+    ).build()
 
+    @Provides
+    @Singleton
+    fun provideRepository(db: UserDatabase): UserRepository {
+        return UserRepositoryImpl(db.userDao)
+    }
 }

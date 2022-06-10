@@ -1,4 +1,4 @@
-package com.aangles.cmestas.myquispeyn.screens
+package com.aangles.cmestas.mquispeyn.presentation.screens.users
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,11 +13,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+
 
 
 @Composable
-fun SecondScreen(navController: NavController){
+fun FirstScreen(navegarPantalla2: Any) {
     Column( modifier = Modifier
         .fillMaxSize()
         .padding(16.dp),
@@ -25,7 +25,7 @@ fun SecondScreen(navController: NavController){
         horizontalAlignment= Alignment.CenterHorizontally)
     {
         Text(
-            text="Pantall2",
+            text="Pantall1",
             style = TextStyle(color = Color.Black,fontSize = 42.sp,fontWeight = FontWeight.Black)
         )
 

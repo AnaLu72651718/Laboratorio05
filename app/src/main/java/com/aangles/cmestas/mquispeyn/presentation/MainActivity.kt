@@ -1,4 +1,4 @@
-package com.aangles.cmestas.mquispeyn
+package com.aangles.cmestas.mquispeyn.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,9 +7,9 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import com.aangles.cmestas.mquispeyn.components.BottomNavigationBar
-import com.aangles.cmestas.mquispeyn.navigation.Destinations
-import com.aangles.cmestas.mquispeyn.navigation.NavigationHost
+import com.aangles.cmestas.mquispeyn.presentation.components.BottomNavigationBar
+import com.aangles.cmestas.mquispeyn.presentation.navigation.Destinations
+import com.aangles.cmestas.mquispeyn.presentation.navigation.NavigationHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

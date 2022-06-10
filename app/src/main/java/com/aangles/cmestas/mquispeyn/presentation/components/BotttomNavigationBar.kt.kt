@@ -1,4 +1,4 @@
-package com.aangles.cmestas.mquispeyn.components
+package com.aangles.cmestas.mquispeyn.presentation.components
 
 
 import androidx.compose.material.BottomNavigation
@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.aangles.cmestas.mquispeyn.navigation.Destinations
+import com.aangles.cmestas.mquispeyn.presentation.navigation.Destinations
 
 
 @Composable
