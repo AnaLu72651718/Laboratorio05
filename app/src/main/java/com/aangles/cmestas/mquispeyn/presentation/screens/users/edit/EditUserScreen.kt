@@ -24,6 +24,7 @@ fun EditUserScreen(
 ) {
     val nameState = viewModel.userName.value
     val lastNameState = viewModel.userLastName.value
+    val phoneState = viewModel.userPhone.value
     val ageState = viewModel.userAge.value
 
     LaunchedEffect(key1 = true) {
@@ -46,6 +47,7 @@ fun EditUserScreen(
             EditContent(
                 name = nameState.text,
                 lastName = lastNameState.text,
+                phone = phoneState.text,
                 age = ageState.text,
                 onEvent = { viewModel.onEvent(it) }
             )
@@ -78,6 +80,7 @@ fun EditTopBar(topAppBarText: String) {
 fun EditContent(
     name: String,
     lastName: String,
+    phone: String,
     age: String,
     onEvent: (EditEvent) -> Unit
 ) {
@@ -92,6 +95,11 @@ fun EditContent(
             text = lastName,
             hint = stringResource(id = R.string.last_name),
             onTextChange = { onEvent(EditEvent.EnteredLastName(it)) }
+        )
+        UserInputText(
+            text = phone,
+            hint = stringResource(id = R.string.phone),
+            onTextChange = { onEvent(EditEvent.EnteredPhone(it)) }
         )
         UserInputText(
             text = age,
@@ -109,7 +117,7 @@ fun EditBottomBar(
     Button(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 10.dp, vertical = 14.dp),
+            .padding(10.dp, 10.dp, 10.dp, 100.dp),
         onClick = { onInsertUser() }
     ) {
         Text(text = stringResource(id = R.string.add_user))
@@ -133,6 +141,7 @@ fun PreviewAddEditUserContent() {
         EditContent(
             name = "Ada",
             lastName = "Smith",
+            phone = "Smith",
             age = "20",
             onEvent = { }
         )

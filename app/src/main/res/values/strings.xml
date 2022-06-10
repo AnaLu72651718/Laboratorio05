@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Laboratorio05</string>
-    <string name="add_user">add user</string>
-    <string name="users">usuarios</string>
-    <string name="name">nombre</string>
-    <string name="last_name">apellido</string>
-    <string name="age">telefono</string>
+    <string name="add_user">Agregar usuario</string>
+    <string name="users">Usuarios</string>
+    <string name="name">Nombre:</string>
+    <string name="last_name">Apellido:</string>
+    <string name="age">Edad:</string>
+    <string name="phone">Celular:</string>
 </resources>
