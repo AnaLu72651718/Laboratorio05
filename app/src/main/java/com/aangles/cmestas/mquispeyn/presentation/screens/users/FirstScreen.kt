@@ -32,9 +32,12 @@ fun FirstScreen( navController: NavController,
         topBar = {
             HomeTopBar()
         },
+        floatingActionButtonPosition = FabPosition.Center,
         floatingActionButton = {
+
             HomeFab(
-                onFabClicked = { navController.navigate(Destinations.EditUserScreen.route) }
+                onFabClicked = { navController.navigate(Destinations.EditUserScreen.route) },
+
             )
         },
         content = { innerPadding ->
@@ -90,6 +93,7 @@ fun HomeContent(
                 )
             }
         }
+
     }
 }
 
@@ -103,7 +107,8 @@ fun HomeFab(
         modifier = modifier
             .height(52.dp)
             .widthIn(min = 52.dp),
-        backgroundColor = MaterialTheme.colors.primary
+        elevation = FloatingActionButtonDefaults.elevation(10.dp,10.dp),
+        backgroundColor = MaterialTheme.colors.primary,
     ) {
         Icon(imageVector = Icons.Outlined.Add, contentDescription = stringResource(id = R.string.add_user))
     }

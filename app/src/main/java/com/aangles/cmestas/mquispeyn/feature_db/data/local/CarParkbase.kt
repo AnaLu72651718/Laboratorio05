@@ -9,24 +9,13 @@ import com.aangles.cmestas.mquispeyn.feature_db.domain.model.User
 
 /*
 @Database(
-    entities = [User::class],
+    entities = [CarPark::class],
     version = 1,
     exportSchema = false
 )
 
-abstract class UserDatabase: RoomDatabase() {
-    abstract fun carParkDao(): CarParkDao
-    abstract fun userDao(): UserDao
+abstract class CarParkbase: RoomDatabase() {
+    abstract val carParkDao: CarParkDao
 }
+
 */
-/*
-@Database(
-    entities = [User::class],
-    version = 1,
-    exportSchema = false
-)
-
-abstract class UserDatabase: RoomDatabase() {
-    abstract val userDao: UserDao
-}
-* */

@@ -1,4 +1,4 @@
-package com.aangles.cmestas.mquispeyn.presentation.screens.users.edit
+package com.aangles.cmestas.mquispeyn.presentation.screens.parking.edit
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -8,29 +8,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aangles.cmestas.mquispeyn.R
+import com.aangles.cmestas.mquispeyn.presentation.screens.users.edit.EditEvent
 import com.aangles.cmestas.mquispeyn.presentation.screens.users.edit.components.UserInputText
-import com.aangles.cmestas.mquispeyn.ui.theme.Laboratorio05Theme
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun EditUserScreen(
+fun EditCarParkScreen(
     navController: NavController,
-    viewModel: EditViewModel = hiltViewModel()
+    viewModel: Edit2ViewModel = hiltViewModel()
 ) {
-    val nameState = viewModel.userName.value
-    val lastNameState = viewModel.userLastName.value
-    val phoneState = viewModel.userPhone.value
-    val ageState = viewModel.userAge.value
+    val nameState = viewModel.carParkName.value
+    val addressState = viewModel.carParkAddress.value
+    val latState = viewModel.carParkLat.value
+    val lonState = viewModel.carParkLon.value
+    val dateCState = viewModel.carParkDateC.value
+    val dateOState = viewModel.carParkDateC.value
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
-                is EditViewModel.UiEvent.SaveUser -> {
+                is Edit2ViewModel.Ui2Event.SaveCarPark -> {
                     navController.navigateUp()
                 }
             }
@@ -40,21 +41,23 @@ fun EditUserScreen(
     Scaffold(
         topBar = {
             EditTopBar(
-                topAppBarText = stringResource(id = R.string.add_user)
+                topAppBarText = stringResource(id = R.string.add_carPark)
             )
         },
         content = {
             EditContent(
                 name = nameState.text,
-                lastName = lastNameState.text,
-                phone = phoneState.text,
-                age = ageState.text,
+                address = addressState.text,
+                lat = latState.text,
+                lon = lonState.text,
+                dateC = dateCState.text,
+                dateO = dateOState.text,
                 onEvent = { viewModel.onEvent(it) }
             )
         },
         bottomBar = {
             EditBottomBar(
-                onInsertUser = { viewModel.onEvent(EditEvent.InsertUser) }
+                onInsertCarPark = { viewModel.onEvent(Edit2Event.InsertCarPark) }
             )
         }
     )
@@ -79,32 +82,44 @@ fun EditTopBar(topAppBarText: String) {
 @Composable
 fun EditContent(
     name: String,
-    lastName: String,
-    phone: String,
-    age: String,
-    onEvent: (EditEvent) -> Unit
+    address: String,
+    lat: String,
+    lon: String,
+    dateC: String,
+    dateO: String,
+    onEvent: (Edit2Event) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Spacer(modifier = Modifier.height(44.dp))
         UserInputText(
             text = name,
             hint = stringResource(id = R.string.name),
-            onTextChange = { onEvent(EditEvent.EnteredName(it)) }
+            onTextChange = { onEvent(Edit2Event.EnteredName(it)) }
         )
         UserInputText(
-            text = lastName,
-            hint = stringResource(id = R.string.last_name),
-            onTextChange = { onEvent(EditEvent.EnteredLastName(it)) }
+            text = address,
+            hint = stringResource(id = R.string.address),
+            onTextChange = { onEvent(Edit2Event.EnteredAddress(it)) }
         )
         UserInputText(
-            text = phone,
-            hint = stringResource(id = R.string.phone),
-            onTextChange = { onEvent(EditEvent.EnteredPhone(it)) }
+            text = lat,
+            hint = stringResource(id = R.string.latitude),
+            onTextChange = { onEvent(Edit2Event.EnteredLat(it)) }
         )
         UserInputText(
-            text = age,
-            hint = stringResource(id = R.string.age),
-            onTextChange = { onEvent(EditEvent.EnteredAge(it)) }
+            text = lon,
+            hint = stringResource(id = R.string.longitude),
+            onTextChange = { onEvent(Edit2Event.EnteredLon(it)) }
+        )
+        UserInputText(
+            text = dateC,
+            hint = stringResource(id = R.string.hourC),
+            onTextChange = { onEvent(Edit2Event.EnteredDateC(it)) }
+        )
+        UserInputText(
+            text = dateO,
+            hint = stringResource(id = R.string.hourB),
+            onTextChange = { onEvent(Edit2Event.EnteredDateO(it)) }
         )
     }
 }
@@ -112,46 +127,14 @@ fun EditContent(
 @Composable
 fun EditBottomBar(
     modifier: Modifier = Modifier,
-    onInsertUser: () -> Unit
+    onInsertCarPark: () -> Unit
 ) {
     Button(
         modifier = modifier
             .fillMaxWidth()
-            .padding(10.dp, 10.dp, 10.dp, 100.dp),
-        onClick = { onInsertUser() }
+            .padding(10.dp, 10.dp, 10.dp, 75.dp),
+        onClick = { onInsertCarPark() }
     ) {
-        Text(text = stringResource(id = R.string.add_user))
-    }
-}
-
-@Preview
-@Composable
-fun PreviewAddEditUserTopBar() {
-    Laboratorio05Theme(){
-        EditTopBar(
-            topAppBarText = stringResource(id = R.string.add_user)
-        )
-    }
-}
-
-@Preview
-@Composable
-fun PreviewAddEditUserContent() {
-    Laboratorio05Theme() {
-        EditContent(
-            name = "Ada",
-            lastName = "Smith",
-            phone = "Smith",
-            age = "20",
-            onEvent = { }
-        )
-    }
-}
-
-@Preview
-@Composable
-fun PreviewAddEditBottomBar() {
-    Laboratorio05Theme() {
-        EditBottomBar {}
+        Text(text = stringResource(id = R.string.add_carPark))
     }
 }
